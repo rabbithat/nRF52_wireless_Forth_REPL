@@ -23,7 +23,9 @@ reliable and easy to verify visually.
 DIRECTIONS: 
 1. Load the current versions of the following files:
      i.   https://github.com/rabbithat/nRF52_delay_functions
+     
      ii.  https://github.com/rabbithat/nRF52_essential_definitions
+     
 2. Only after loading the above files, load this file.
 3. At the REPL prompt, type 'terminal' to create a terminal node, or 
    'remote' to create a remote node. If you wish, you can setup the
