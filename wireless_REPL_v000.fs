@@ -36,6 +36,10 @@
 \
 \ This Forth code is written in mecrisp-stellaris: 
 \ https://sourceforge.net/projects/mecrisp/
+\ 
+\ Note: In the current verion (Version 000) you should launch the 
+\ terminal node first and the remote node second.  This requirement
+\ will be removed in a future release.
 \
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -88,7 +92,7 @@ $FEEDBEEF constant _my_baseAddress \ base address of this node
 4 variable savedAckTimeOut \ Diagnostic tool
 4 variable guaranteedZero \ diagnostic tool
 4 variable ackReceived?  \ True iff an ACK was received
-
+0 variable thePayloadCounter 
 
 $40002008 constant NRF_UART0__TASKS_STARTTX
 $4000251C constant NRF_UART0__TXD
