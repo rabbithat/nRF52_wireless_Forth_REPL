@@ -40,3 +40,7 @@ terminal node.
 
 This Forth code is written in mecrisp-stellaris: 
 https://sourceforge.net/projects/mecrisp/
+
+Note: In the current verion (Version 000) you should launch the 
+terminal node first and the remote node second.  This requirement
+will be removed in a future release.
