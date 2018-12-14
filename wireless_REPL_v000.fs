@@ -34,7 +34,8 @@
 \ For a proper demonstration, you will need both a remote node and a 
 \ terminal node.
 \
-\ This Forth code is written in mecrisp-stellaris:  
+\ This Forth code is written in mecrisp-stellaris: 
+\ https://sourceforge.net/projects/mecrisp/
 \
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
