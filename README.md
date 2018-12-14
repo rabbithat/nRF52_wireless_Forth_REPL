@@ -32,7 +32,9 @@ DIRECTIONS:
    'remote' to create a remote node. If you wish, you can setup the
    remote node to start automatically as a remote node by compiling to 
    flash memory and writing an init definition such as:
+   
    : init remote ;
+   
    at the end of the file.
 
 For a proper demonstration, you will need both a remote node and a 
