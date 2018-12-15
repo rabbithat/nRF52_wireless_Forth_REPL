@@ -27,7 +27,8 @@
 \ 2. Only after loading the above files, load this file.
 \ 3. At the REPL prompt, type 'terminal' to create a terminal node, or 
 \    'remote' to create a remote node. If you wish, you can setup the
-\    remote node to start automatically as a remote node by compiling to \    flash memory and writing an init definition such as:
+\    remote node to start automatically as a remote node by compiling to 
+\    flash memory and writing an init definition such as:
 \    : init remote ;
 \    at the end of the file.
 \
