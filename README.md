@@ -42,3 +42,9 @@ terminal node.
 
 This Forth code is written in mecrisp-stellaris: 
 https://sourceforge.net/projects/mecrisp/
+
+--------------------------------------
+
+Revision History:
+
+Version 3: Changed notation for variables to make type more explicit and documented global variables.
