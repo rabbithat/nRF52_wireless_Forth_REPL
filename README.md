@@ -48,6 +48,6 @@ https://sourceforge.net/projects/mecrisp/
 Revision History:
 
 Version 3: 
-  1. Changed notation for variables to make type more explicit. 
-  2. Documented global variables.
-  3. Initialized packet counter to $FF so that the very first packet received is not ignored.
+  a. Changed notation for variables to make type more explicit. 
+  b. Documented global variables.
+  c. Initialized packet counter to $FF so that the very first packet received is not ignored.
