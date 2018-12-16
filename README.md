@@ -27,6 +27,8 @@ DIRECTIONS:
      
      ii.  https://github.com/rabbithat/nRF52_essential_definitions
      
+     iii. https://github.com/rabbithat/nRF52_osiLayers3and4
+     
 2. Only after loading the above files, load this file.
 3. At the REPL prompt, type 'terminal' to create a terminal node, or 
    'remote' to create a remote node. If you wish, you can setup the
@@ -46,6 +48,10 @@ https://sourceforge.net/projects/mecrisp/
 --------------------------------------
 
 Revision History:
+
+Version 4:  Removed the OSI Layer 3 and 4 code from the radio REPL code and put it in its own 
+separate library file:  https://github.com/rabbithat/nRF52_osiLayers3and4
+
 
 Version 3: 
   1. Changed notation for variables to make type more explicit. 
