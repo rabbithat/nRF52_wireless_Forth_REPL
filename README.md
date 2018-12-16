@@ -51,7 +51,7 @@ Revision History:
 
 Version 5:
 
-  Created a uart0 controller that's separate from the uart0 controller in the 
+  Wrote a uart0 controller that's separate from the uart0 controller software in the 
   Mecrisp-Stellaris Kernel.  As a result, now anything typed on the remote
   node's serial connection can be transmitted to and displayed on the terminal 
   node, which listens for packets whenever it is not actively processing its own 
