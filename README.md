@@ -49,6 +49,16 @@ https://sourceforge.net/projects/mecrisp/
 
 Revision History:
 
+Version 5:
+  Created a uart0 controller that's separate from the uart0 controller in the 
+  Mecrisp-Stellaris Kernel.  As a result, now anything typed on the remote
+  node's serial connection can be transmitted to and displayed on the terminal 
+  node, which listens for packets whenever it is not actively processing its own 
+  serial input stream.  If desired, now whatever is typed into the remote node's serial 
+  connection can also be input into the remote node's REPL and the results displayed
+  on both the remote node's screen (if there is one) and on the terminal node's
+  screen.
+
 Version 4:  
 
   Removed the OSI Layer 3 and 4 code from the radio REPL code and put it in its own 
