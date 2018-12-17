@@ -106,15 +106,14 @@ $4000251C constant _NRF_UART0__TXD
 
 \ ( -- )
 \
-: processAltKeyPress nonblocking_altGetKey dup <char_receivedChar> ! dup blocking_altEmit dup quitKey? not if dup sendChar else then ; 
+: processAltKeyPress nonblocking_altGetKey dup <char_receivedChar> !  dup quitKey? not if <bool_terminalNode?> @ if sendChar else drop then else drop then ; 
 
+\ : processAltKeyPress nonblocking_altGetKey dup <char_receivedChar> ! dup quitKey? not if dup sendChar else then ;
 
-\ : processAltKeyPress nonblocking_altGetKey dup <char_receivedChar> ! dup quitKey? not if  writeKeyToTxBuffer incrementTxPayloadCounter  transmitPayload else drop then ;
+\ : processAltKeyPress nonblocking_altGetKey dup <char_receivedChar> ! dup blocking_altEmit dup quitKey? not if dup sendChar else then ;
 
 0 variable tx-puffer
 0 variable rx-puffer
-
-: hookReceive0 begin receiveIntoRxBuffer processReceivedPacket? until <char_receivedChar> @ rx-puffer ! ; 
 
 : hookReceive listenForKeyOrPacket nonblocking_keypressReceived?  if processAltKeyPress else manageReceivedPacket then <char_receivedChar> @ rx-puffer ! ;
 
