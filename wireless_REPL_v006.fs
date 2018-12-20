@@ -169,7 +169,7 @@ $4000251C constant _NRF_UART0__TXD
 
 : transmitBufferToRemoteNode dlBuf_i var0! begin dlBuf_i dlBuf i++List@b sendChar dlBuf_i @ dlBuf_numChars @  >= until _END_OF_PASTE_CHAR sendChar ;
 
-: paste ul terminalSetup transmitBufferToRemoteNode msg_finishedTransmittingPaste print terminal ;
+: paste ul terminalSetup transmitBufferToRemoteNode msg_finishedTransmittingPaste print ;
 
 \ Note: Diagnostic only.
 \ show all the code that was received into the download buffer 
