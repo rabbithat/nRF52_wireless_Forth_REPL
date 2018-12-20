@@ -51,8 +51,8 @@ Revision History:
 
 Version 6
 
-Leverages the upload buffer, presumed to already be installed, to allow update code
-to be instantly pasted into the terminal (with no flow control), then transmitted
+Leverages the upload buffer, presumed to already be installed (https://github.com/rabbithat/nRF52840_uploader), 
+to allow update code to be instantly pasted into the terminal (with no flow control), then transmitted
 to the remote node as a monolithic block (for improved transmit speed).  Once received, the the 
 remote node will then update itself using the block of transmitted code and then continue to act
 as a remote wireless REPL node.
