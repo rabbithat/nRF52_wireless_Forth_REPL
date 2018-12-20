@@ -43,7 +43,7 @@
 
 \ Notification Strings
 : exitMsg c" Exiting program." ;
-: msg_startingReceivePaste c" Ready to receive transmitted paste." ;
+: msg_startingReceivePaste c" Ready to receive transmitted paste: " ;
 : msg_finishedReceivingPaste c" Finished receiving transmitted paste." ;
 : msg_finishedTransmittingPaste c" Finished transmitting paste." ;
 
@@ -70,6 +70,9 @@ false variable <bool_endProgram?>
 
 false variable <halt>
 \ SEMAPHORE: True iff a transmission error has occured and so program execution should stop
+
+false variable <bool_paste_mode?>
+\ SEMAPHORE: true iff the remote node is in the midst of downloading or processing a paste
 
 \ *** END OF VARIABLE DECLARATIONS ***
 \ ---------------------------------------------------------------------
@@ -108,6 +111,11 @@ $4000251C constant _NRF_UART0__TXD
 ( cString -- )
 : altPrint count 0 do dup c@ blocking_altEmit 1+ loop drop ;
 
+\ specialized emit routine used by the remote node
+( char -- )
+: remoteEmit dup sendChar <bool_paste_mode?> @ if drop else blocking_altEmit then  ;
+<bool_terminalNode?>
+
 : print count 0 do dup c@ emit 1+ loop drop ;
 
 \ stub
@@ -142,14 +150,14 @@ $4000251C constant _NRF_UART0__TXD
 : repl-key?  ( -- ? ) rx-puffer @ 0<> ;
 : repl-key   ( -- c ) hookReceive rx-puffer @ 0 rx-puffer ! ;
 : repl-emit? ( -- ? ) tx-puffer @ 0= ;
-: repl-emit  ( c -- ) dup tx-puffer ! dup blocking_altEmit sendChar 0 tx-puffer ! ;
+: repl-emit  ( c -- ) dup tx-puffer ! remoteEmit 0 tx-puffer ! ;
 
 
 : setupHooks ['] repl-key? hook-key? ! ['] repl-key hook-key ! ['] repl-emit? hook-emit? ! ['] repl-emit hook-emit ! ;
 
 : terminalSetup  installTerminalIdentity initializeEverything ;
 
-: terminal terminalNodeGreeting terminalSetup begin listenForKeyOrPacket nonblocking_keypressReceived? if processAltKeyPress else manageReceivedPacket then <bool_endProgram?> @ until exitMsg print CR ;
+: terminal false <bool_endProgram?> ! terminalNodeGreeting terminalSetup begin listenForKeyOrPacket nonblocking_keypressReceived? if processAltKeyPress else manageReceivedPacket then <bool_endProgram?> @ until exitMsg print CR ;
 
 : remoteSetup installRemoteIdentity initializeEverything ;
 
@@ -169,7 +177,7 @@ $4000251C constant _NRF_UART0__TXD
 
 : transmitBufferToRemoteNode dlBuf_i var0! begin dlBuf_i dlBuf i++List@b sendChar dlBuf_i @ dlBuf_numChars @  >= until _END_OF_PASTE_CHAR sendChar ;
 
-: paste ul terminalSetup transmitBufferToRemoteNode msg_finishedTransmittingPaste print ;
+: paste ul terminalSetup transmitBufferToRemoteNode terminal ; \ msg_finishedTransmittingPaste print ;
 
 \ Note: Diagnostic only.
 \ show all the code that was received into the download buffer 
@@ -211,7 +219,7 @@ $4000251C constant _NRF_UART0__TXD
 \
 : sdl cr dlBuf_i var0! begin dlBuf_i dlBuf i++List@b showKey dlBuf_i @ dlBuf_numChars @ = until CR ;
 
-: download dl evaluateEachLine CR CR CR ." Done!" CR CR ;
+: download true <bool_paste_mode?> ! dl evaluateEachLine  false <bool_paste_mode?> ! ; \ CR CR CR  ." Done!"  CR  CR
 
 \ Type 'paste" from the REPL to paste a file into the terminal node.
 \ Type 'download' to receive a file into the remote node.
