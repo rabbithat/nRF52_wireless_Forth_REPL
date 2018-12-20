@@ -49,6 +49,14 @@ https://sourceforge.net/projects/mecrisp/
 
 Revision History:
 
+Version 6
+
+Leverages the upload buffer, presumed to already be installed, to allow update code
+to be instantly pasted into the terminal (with no flow control), then transmitted
+to the remote node as a monolithic block (for improved transmit speed).  Once received, the the 
+remote node will then update itself using the block of transmitted code and then continue to act
+as a remote wireless REPL node.
+
 Version 5:
 
   Wrote a uart0 controller that's separate from the uart0 controller software in the 
